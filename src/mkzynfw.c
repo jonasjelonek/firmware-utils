@@ -146,6 +146,13 @@ int num_blocks = 0;
 	.bootext_size = 0x30000		\
 	}
 
+#define RTL93XXBOARD(n, d, m, fs, fo) {				\
+	.name = (n), .desc = (d),				\
+	.vendor = (ZYNOS_VENDOR_ID_ZYXEL), .model = (m),	\
+	.flash_base = 0xb4000000, .flash_size = (fs)<<20,	\
+	.code_start = 0x80220000, .romio_offs = (fo),		\
+	.bootext_size = 0x10000					\
+	}
 
 static struct board_info boards[] = {
 	/*
@@ -225,6 +232,15 @@ static struct board_info boards[] = {
 	 * Atheros ar71xx based boards
 	 */
 	AR71XXBOARD1("NBG-460N", "ZyXEL NBG-460N", ZYNOS_MODEL_NBG_460N, 4),
+
+	/*
+	 * Realtek RTL93xx based boards
+	 */
+	RTL93XXBOARD("XS1930-10", "Zyxel XS1930-10", MID(29698), 32, 0x280000),	/* ABQE */
+	RTL93XXBOARD("XS1930-12F", "Zyxel XS1930-12F", MID(33026), 32, 0x280000),	/* ABZV */
+	RTL93XXBOARD("XS1930-12HP", "Zyxel XS1930-12HP", MID(29954), 32, 0x280000),	/* ABQF */
+	//RTL93XXBOARD("XMG1930-30", "Zyxel XMG1930-30", MID(33794), ...)	/* ACAR */
+	//RTL93XXBOARD("XMG1930-30HP", "Zyxel XMG1930-30HP", MID(34050), ...)	/* ACAS */
 
 	{.name = NULL}
 };
